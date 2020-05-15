@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'd3query.urls'
+ROOT_URLCONF = 'd4_project.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'd3query.wsgi.application'
+WSGI_APPLICATION = 'd4_project.wsgi.application'
 
 
 # Database

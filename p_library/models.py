@@ -2,6 +2,7 @@ import uuid
 
 from django.utils.translation import gettext as _
 from django.db import models
+from django.core import validators
 
 
 class Author(models.Model):

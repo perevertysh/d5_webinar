@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'd3query.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'd4_project.settings')
 
 application = get_wsgi_application()
