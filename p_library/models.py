@@ -8,7 +8,7 @@ from django.core import validators
 class Author(models.Model):
     # id = models.UUIDField(default=uuid.uuid4, primary_key=True,
     #                       verbose_name=_("Уникальный ключ"))
-    full_name = models.TextField(verbose_name=_("Имя автора"))
+    full_name = models.CharField(max_length=256, verbose_name=_("Имя автора"))
     birth_year = models.SmallIntegerField(verbose_name=_("Год рожения"))
     country = models.CharField(max_length=2, verbose_name=_("Страна"))
 

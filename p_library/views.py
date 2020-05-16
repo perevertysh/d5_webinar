@@ -1,23 +1,39 @@
-from django.http import HttpResponse
+from django.forms import formset_factory
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.template import loader
-from p_library.models import Author
-from p_library.forms import AuthorForm
-from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
-from p_library.models import Book
+
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from p_library.forms import AuthorForm
+from p_library.models import Author, Book
 
 
-class AuthorEdit(CreateView):
+class AuthorCreate(CreateView):
     model = Author
     form_class = AuthorForm
     success_url = reverse_lazy('p_library:author_list')
     template_name = 'author_edit.html'
 
 
-class AuthorList(ListView):
+class AuthorRead(ListView):
     model = Author
     template_name = 'author_list.html'
+
+
+class AuthorUpdate(UpdateView):
+    model = Author
+    fields = ["full_name", "birth_year", "country"]
+    template_name = 'author_edit.html'
+
+
+class AuthorDelete(DeleteView):
+    model = Author
+    form_class = AuthorForm
+    fields = ["full_name", "birth_year", "country"]
+    success_url = reverse_lazy('p_library:author_list')
+    template_name = 'author_delete.html'
+
 
 
 def books_list(request):
@@ -71,15 +87,10 @@ def book_decrement(request):
         return redirect('/index/')
 
 
-from django.forms import formset_factory
-from django.urls import reverse_lazy
-from django.http.response import HttpResponseRedirect
-
-from .forms import AuthorForm
+AuthorFormSet = formset_factory(AuthorForm, extra=4)
 
 
 def author_create_many(request):
-    AuthorFormSet = formset_factory(AuthorForm, extra=4)
     if request.method == 'POST':
         author_formset = AuthorFormSet(request.POST, request.FILES, prefix='authors')
         if author_formset.is_valid():
@@ -89,4 +100,3 @@ def author_create_many(request):
     else:
         author_formset = AuthorFormSet(prefix='authors')
     return render(request, 'manage_authors.html', {'author_formset': author_formset})
-

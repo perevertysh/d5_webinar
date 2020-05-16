@@ -9,9 +9,11 @@
 	{% csrf_token %}
 	{{ author_formset.management_form }}
 	{% for form in author_formset %}
-		<table>
-			{{ form }}
-		</table>
+		<br>
+			<table style="align:left;">
+				{{ form }}
+			</table>
+		<br>
 	{% endfor %}
 
     <input type="submit" style="margin: 10px 0px 0px 250px;"
