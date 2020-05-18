@@ -7,7 +7,7 @@
 <body>
 	<ul>
 		{% for author in object_list %}
-		    <li>{{ author.full_name }}</li>
+		    <li><a href="{{author.id}}/">{{ author.full_name }}</a></li>
 		{% endfor %}
 	</ul>
 </body>

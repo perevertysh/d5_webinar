@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'd4_project.urls'
+ROOT_URLCONF = 'd5_webinar.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'd4_project.wsgi.application'
+WSGI_APPLICATION = 'd5_webinar.wsgi.application'
 
 
 # Database

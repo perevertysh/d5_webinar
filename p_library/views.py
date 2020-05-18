@@ -23,6 +23,7 @@ class AuthorRead(ListView):
 
 class AuthorUpdate(UpdateView):
     model = Author
+    success_url = reverse_lazy('p_library:author_list')
     fields = ["full_name", "birth_year", "country"]
     template_name = 'author_edit.html'
 
@@ -33,7 +34,6 @@ class AuthorDelete(DeleteView):
     fields = ["full_name", "birth_year", "country"]
     success_url = reverse_lazy('p_library:author_list')
     template_name = 'author_delete.html'
-
 
 
 def books_list(request):
@@ -87,16 +87,17 @@ def book_decrement(request):
         return redirect('/index/')
 
 
-AuthorFormSet = formset_factory(AuthorForm, extra=4)
+AuthorFormSet = formset_factory(AuthorForm, extra=2)
 
 
 def author_create_many(request):
     if request.method == 'POST':
-        author_formset = AuthorFormSet(request.POST, request.FILES, prefix='authors')
+        author_formset = AuthorFormSet(request.POST, request.FILES, prefix='author')
         if author_formset.is_valid():
             for author_form in author_formset:
                 author_form.save()
             return HttpResponseRedirect(reverse_lazy('p_library:author_list'))
     else:
-        author_formset = AuthorFormSet(prefix='authors')
+        author_formset = AuthorFormSet(prefix='author')
     return render(request, 'manage_authors.html', {'author_formset': author_formset})
+
