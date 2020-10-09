@@ -44,7 +44,6 @@ def books_list(request):
 def index(request):
     template = loader.get_template('index.html')
     books = Book.objects.all()
-    # books_count = books.count()
     biblio_data = {
         "title": "БИБЛИОТЕКУ",
         "books": books
